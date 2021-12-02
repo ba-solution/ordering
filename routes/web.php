@@ -13,13 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.dashboard');
-});
-Route::get('/orders', function () {
-    return view('pages.listorders');
-});
-Route::get('/items', function () {
-    return view('pages.listitems');
-});
 Route::get('customers', 'App\Http\Controllers\orderingController@getcustomers')->name('customers');
+Route::get('orders', 'App\Http\Controllers\orderingController@getorders')->name('orders');
+Route::get('vieworder/{id}', 'App\Http\Controllers\orderingController@vieworder')->name('vieworder');
+Route::get('products', 'App\Http\Controllers\orderingController@products')->name('products');
+Route::get('/', 'App\Http\Controllers\orderingController@dashboard')->name('dashboard');
+Route::post('/filter', 'App\Http\Controllers\orderingController@filter')->name('filter');

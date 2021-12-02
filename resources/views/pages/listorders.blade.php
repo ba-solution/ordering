@@ -29,28 +29,93 @@
                                 <h3 class="card-title">List Orders</h3>
                             </div>
                             <!-- /.card-header -->
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="card">
+                                        <h5 class="card-header"><a href="javascript:filters()"><i class="fa fa-filter">  FILTERS</i></a></h5>
+                                        <div class="card-body" id="filter" style="display: none;">
+                                            {!! Form::open(['action'=>['App\Http\Controllers\orderingController@filter'],'method'=>'POST']) !!}
+                                            <div class="row pb-2">
+                                                <div class="col-md-6 ">
+                                                    <label>Date</label>
+                                                    <select class="form-control" id="select">
+                                                        <option value="0">Select date filter</option>
+                                                        <option value="1">From - To</option>
+                                                        <option value="2">Greater Or Equals</option>
+                                                        <option value="3">Less Or Equals</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row pb-2" id="fromto">
+                                                <div class="col-md-3 ">
+                                                    <label>From</label>
+                                                        <input id="from" type="date" name="from" class="form-control">
+                                                </div>
+                                                <div class="col-md-3 ">
+                                                    <label>To</label>
+                                                        <input id="to" type="date" name="to" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row pb-2" id="less">
+                                                <div class="col-md-3 ">
+                                                    <label>Less than or Equal</label>
+                                                    <input id="lessdate" type="date" name="less" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row pb-2" id="great">
+                                                <div class="col-md-3 ">
+                                                    <label>Greater than or Equal</label>
+                                                    <input id="greatdate" type="date" name="great" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2 ">
+                                                <button id="filterbtn" class="btn btn-secondary"><i class="fa fa-filter"> Filter </i></button>
+                                            </div>
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                    <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th>OrderID</th>
-                                        <th>Customer</th>
+                                        <th>CustomerID</th>
                                         <th>Date</th>
+                                        <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>ID</td>
-                                        <td>ID</td>
+                                    @if(isset($data))
+                                        @foreach($data as $d)
+                                        <tr>
+                                            <td>{{$d['id']}}</td>
+                                            <td>{{$d['customerId']}}</td>
+                                            <td>{{$d['createdAt']}}</td>
+                                            <td><a href="{{route('vieworder',['id' =>$d['id']])}}"> <i class="fas fa-eye"> </i> View Order</a> </td>
+                                        </tr>
+                                        @endforeach
+                                    @else
+                                        @foreach($search as $s)
+                                            <tr>
+                                                <td>{{$s['id']}}</td>
+                                                <td>{{$s['customerId']}}</td>
+                                                <td>{{$s['createdAt']}}</td>
+                                                <td><a href="{{route('vieworder',['id' =>$s['id']])}}"> <i class="fas fa-eye"> </i> View Order</a> </td>
+                                            </tr>
+                                        @endforeach
 
-                                    </tr>
+                                    @endif
                                     </tbody>
                                     <tfoot>
                                     <tr>
                                         <th>OrderID</th>
                                         <th>Customer</th>
                                         <th>Date</th>
+                                        <th>Actions</th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -89,6 +154,45 @@
         });
     </script>
     <script>
+        $( "#fromto").hide();
+        $( "#great").hide();
+        $( "#less").hide();
+        $( "#filterbtn").hide();
+        $('#select').change(function(){
+            var value = $(this).val();
+            if(value == 1){
+                $( "#fromto").show();
+                $( "#filterbtn").show();
+                $( "#great").hide();
+                $( "#less").hide();
+                $( "#lessdate").val("");
+                $( "#greatdate").val("");
+
+            }
+            else if(value == 2){
+                $( "#great").show();
+                $( "#filterbtn").show();
+                $( "#fromto").hide();
+                $( "#less").hide();
+                $( "#from").val("");
+                $( "#to").val("");
+                $( "#lessdate").val("");
+
+            }
+            else if(value == 3){
+                $( "#less").show();
+                $( "#filterbtn").show();
+                $( "#great").hide();
+                $( "#fromto").hide();
+                $( "#from").val("");
+                $( "#to").val("");
+                $( "#greatdate").val("");
+            }
+        });
+
         $('#orders').addClass('active');
+        function filters() {
+            $( "#filter" ).toggle( "slow" );
+        }
     </script>
 @endsection

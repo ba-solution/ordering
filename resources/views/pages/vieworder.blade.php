@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Items</h1>
+                        <h4>Order ID : {{$id}}</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Items</li>
+                            <li class="breadcrumb-item active">Order Details</li>
                         </ol>
                     </div>
                 </div>
@@ -26,30 +26,34 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">List Items</h3>
+                                <h3 class="card-title">Order Details</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
+                                        <th>ProductID</th>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
                                         <th>Price</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>ID</td>
-                                        <td>ID</td>
-
-                                    </tr>
+                                    @foreach($data as $d)
+                                        <tr>
+                                            <td>{{$d['id']}}</td>
+                                            <td>{{$d['name']}}</td>
+                                            <td>{{$d['quantity']}}</td>
+                                            <td>{{$d['basePrice']}}</td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>ProductID</th>
                                         <th>Name</th>
+                                        <th>Quantity</th>
                                         <th>Price</th>
                                     </tr>
                                     </tfoot>
@@ -89,6 +93,6 @@
         });
     </script>
     <script>
-        $('#items').addClass('active');
+        $('#orders').addClass('active');
     </script>
 @endsection

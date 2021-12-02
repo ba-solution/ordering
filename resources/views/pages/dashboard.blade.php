@@ -31,14 +31,14 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>count</h3>
+                                <h3>{{$customers}}</h3>
 
                                 <p>Customers</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-ice-cream"></i>
+                                <i class="fas fa-users"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{route('customers')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -47,14 +47,14 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>count</h3>
+                                <h3>{{$orders}}</h3>
 
                                 <p>Orders</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-cocktail"></i>
+                                <i class="fas fa-truck"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{route('orders')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->

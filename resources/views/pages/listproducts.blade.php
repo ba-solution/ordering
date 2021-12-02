@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Customers</h1>
+                        <h1>Products</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Customers</li>
+                            <li class="breadcrumb-item active">Products</li>
                         </ol>
                     </div>
                 </div>
@@ -26,49 +26,29 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">List Customers</h3>
+                                <h3 class="card-title">List Products</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>firstName</th>
-                                        <th>lastName</th>
-                                        <th>email</th>
-                                        <th>Billing Address</th>
-                                        <th>Shipping Address</th>
+                                        <th>ProductID</th>
+                                        <th>Product Name</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($data as $d)
                                         <tr>
                                             <td>{{$d['id']}}</td>
-                                            <td>{{$d['firstName']}}</td>
-                                            <td>{{$d['lastName']}}</td>
-                                            <td>{{$d['email']}}</td>
-                                            <td><b>Address :</b> {{$d['addresses'][0]['address']}}
-                                                <br><b>City :</b> {{$d['addresses'][0]['city']}}
-                                                    <br><b>ZIP :</b> {{$d['addresses'][0]['zip']}}
-                                            </td>
-                                            <td><b>Address :</b> {{$d['addresses'][1]['address']}}
-                                                <br><b>City :</b> {{$d['addresses'][1]['city']}}
-                                                    <br><b>ZIP :</b> {{$d['addresses'][1]['zip']}}
-                                            </td>
-
+                                            <td>{{$d['name']}}</td>
                                         </tr>
-                                    @endforeach
-
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>firstName</th>
-                                        <th>lastName</th>
-                                        <th>email</th>
-                                        <th>Billing Address</th>
-                                        <th>Shipping Address</th>
+                                        <th>ProductID</th>
+                                        <th>Product Name</th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -93,7 +73,7 @@
         $(function () {
             $("#example1").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
@@ -103,11 +83,10 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
-
             });
         });
     </script>
     <script>
-        $('#customers').addClass('active');
+        $('#items').addClass('active');
     </script>
 @endsection

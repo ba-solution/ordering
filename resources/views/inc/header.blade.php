@@ -52,26 +52,26 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="/" id="dashboard" class="nav-link">
-                        <i class="nav-icon fas fa-smile"></i>
+                    <a href="{{route('dashboard')}}" id="dashboard" class="nav-link">
+                        <i class="nav-icon fa fa-calculator"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('customers')}}" id="customers" class="nav-link">
-                        <i class="nav-icon fas fa-smile"></i>
+                        <i class="nav-icon fas fa-user"></i>
                         <p>Customers</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/items" id="items" class="nav-link">
-                        <i class="nav-icon fas fa-smile"></i>
+                    <a href="{{route('products')}}" id="items" class="nav-link">
+                        <i class="nav-icon fas fa-box-open"></i>
                         <p>Items</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/orders" id="orders" class="nav-link">
-                        <i class="nav-icon fas fa-smile"></i>
+                    <a href="{{route('orders')}}" id="orders" class="nav-link">
+                        <i class="nav-icon fas fa-truck"></i>
                         <p>Orders</p>
                     </a>
                 </li>
